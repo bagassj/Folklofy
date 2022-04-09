@@ -33,8 +33,8 @@ class _homePageState extends State<homePage> {
             alignment: WrapAlignment.center,
             children: [
               Container(
-                  width: 240,
-                  height: 300,
+                  width: 170,
+                  height: 240,
                   child: GestureDetector(
                     onTap: () => {
                       Navigator.push(
@@ -76,7 +76,7 @@ class _homePageState extends State<homePage> {
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'GothamBold',
-                                            fontSize: 16,
+                                            fontSize: 12,
                                             shadows: [
                                               Shadow(
                                                 offset: Offset(3, 3),
