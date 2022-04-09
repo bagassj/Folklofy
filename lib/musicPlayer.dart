@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'dart:typed_data';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 
-class musicPlayer extends StatefulWidget {
+class musicplayer extends StatefulWidget {
   @override
-  State<musicPlayer> createState() => _musicPlayerState();
+  State<musicplayer> createState() => _musicplayerState();
 }
 
-class _musicPlayerState extends State<musicPlayer> {
-  AudioPlayer audioPlayer = new AudioPlayer();
+class _musicplayerState extends State<musicplayer> {
+  AudioPlayer audioPlayer = AudioPlayer();
 
   String audioasset = "lib/assets/audios/danauToba.mp3";
   bool isPlay = false;
@@ -15,9 +17,12 @@ class _musicPlayerState extends State<musicPlayer> {
 
   void play() async {
     if (isPlay == false) {
-      isPlay = !isPlay;
-
-      int result = await audioPlayer.play(audioasset);
+      isPlay = true;
+      ByteData bytes =
+          await rootBundle.load(audioasset); //load sound from assets
+      Uint8List soundbytes =
+          bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+      int result = await audioPlayer.playBytes(soundbytes);
       if (result == 1) {
         //stop success
         print("Sound playing successfully.");
@@ -49,15 +54,13 @@ class _musicPlayerState extends State<musicPlayer> {
   }
 
   void pause() async {
-    if (isPlay == true) {
-      isPause = true;
-      int result = await audioPlayer.pause();
-      if (result == 1) {
-        //stop success
-        print("Sound pause successfully.");
-      } else {
-        print("Error on while pause sound.");
-      }
+    isPause = true;
+    int result = await audioPlayer.pause();
+    if (result == 1) {
+      //stop success
+      print("Sound pause successfully.");
+    } else {
+      print("Error on while pause sound.");
     }
   }
 

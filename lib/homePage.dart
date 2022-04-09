@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folklofy/musicPlayer.dart';
 import 'musicPlayer.dart';
 
 class homePage extends StatefulWidget {
@@ -40,7 +41,7 @@ class _homePageState extends State<homePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => musicPlayer()))
+                              builder: (context) => musicplayer()))
                     },
                     child: Card(
                       shape: RoundedRectangleBorder(
