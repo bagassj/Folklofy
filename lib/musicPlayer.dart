@@ -1,6 +1,41 @@
 import 'package:flutter/material.dart';
+import 'dart:typed_data';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 
-class musicPlayer extends StatelessWidget {
+class musicPlayer extends StatefulWidget {
+  @override
+  State<musicPlayer> createState() => _musicPlayerState();
+}
+
+class _musicPlayerState extends State<musicPlayer> {
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  void play() async {
+    String audioasset = "lib/assets/audios/danauToba.mp3";
+    ByteData bytes = await rootBundle.load(audioasset); //load sound from assets
+    Uint8List soundbytes =
+        bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    int result = await audioPlayer.playBytes(soundbytes);
+    if (result == 1) {
+      //play success
+      print("Sound playing successful.");
+    } else {
+      print("Error while playing sound.");
+    }
+  }
+
+  void stop() async {
+    int result = await audioPlayer.stop();
+
+    if (result == 1) {
+      //stop success
+      print("Sound playing stopped successfully.");
+    } else {
+      print("Error on while stopping sound.");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,9 +138,9 @@ class musicPlayer extends StatelessWidget {
                             Container(
                               width: 45,
                               height: 45,
-                              child: Icon(
-                                Icons.stop,
-                                size: 30,
+                              child: IconButton(
+                                onPressed: play,
+                                icon: Icon(Icons.stop, size: 30),
                               ),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
@@ -115,9 +150,12 @@ class musicPlayer extends StatelessWidget {
                             Container(
                               width: 60,
                               height: 60,
-                              child: Icon(
-                                Icons.play_arrow,
-                                size: 40,
+                              child: IconButton(
+                                onPressed: play,
+                                icon: Icon(
+                                  Icons.play_arrow,
+                                  size: 40,
+                                ),
                               ),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
