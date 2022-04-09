@@ -72,8 +72,7 @@ class _musicPlayerState extends State<musicPlayer> {
                             image: DecorationImage(
                               alignment: Alignment.center,
                               fit: BoxFit.cover,
-                              image:
-                                  NetworkImage('lib/assets/img/folklore1.png'),
+                              image: AssetImage('lib/assets/img/folklore1.png'),
                             ),
                           ),
                         ),
