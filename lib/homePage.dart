@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:folklofy/musicPlayer.dart';
 import 'musicPlayer.dart';
 
 class homePage extends StatefulWidget {
@@ -73,7 +72,7 @@ class _homePageState extends State<homePage> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Text(
-                                        'Hati-Hati di Jalan',
+                                        'Danau Toba',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'GothamBold',
@@ -89,7 +88,7 @@ class _homePageState extends State<homePage> {
                                       ),
                                       SizedBox(height: 2),
                                       Text(
-                                        'Tulus',
+                                        'Sumatera Utara',
                                         style: TextStyle(
                                           color: Color.fromARGB(
                                               106, 255, 255, 255),
